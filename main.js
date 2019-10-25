@@ -9,7 +9,7 @@ function createRoom(
   privacy = 'Open',
   join = false
 ) {
-  return {
+  newRoom = {
     room,
     subject,
     date,
@@ -19,6 +19,9 @@ function createRoom(
     privacy,
     join
   };
+  addRoomToList(newRoom);
+  joinRoom(newRoom);
+  return;
 }
 
 // Add Room to the List of Rooms
@@ -33,6 +36,11 @@ function joinRoom(room) {
     room.privacy = 'Full';
   }
   room.occupants += 1;
+}
+
+// TODO: Change privacy if occupants == capacity, remove 1 from occupants, set join to false
+function leaveRoom(room) {
+  //...
 }
 
 // List of available rooms
@@ -72,10 +80,8 @@ var rooms = [
 // List of reservations
 var reservations = [];
 
+// How it would look to create a room...
 const room1 = createRoom('Love 105', 'CHEM 109', '10/15/19', '8:15 P.M.', 3, 6);
-
-joinRoom(room1);
-addRoomToList(room1);
 console.log(rooms);
 
 var columns = [

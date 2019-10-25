@@ -1,21 +1,38 @@
-// NEED A WAY TO ADD AN ID
-function createRoom(room, subject, date, time, people, join = false) {
+// Create a Room
+function createRoom(
+  room,
+  subject,
+  date,
+  time,
+  occupants,
+  capacity,
+  privacy = 'Open',
+  join = false
+) {
   return {
     room,
     subject,
     date,
     time,
-    people,
+    occupants,
+    capacity,
+    privacy,
     join
   };
 }
 
+// Add Room to the List of Rooms
 function addRoomToList(room) {
   rooms.push(room);
 }
 
+// Join the Room
 function joinRoom(room) {
   room.join = true;
+  if (room.occupants >= room.capacity - 1) {
+    room.privacy = 'Full';
+  }
+  room.occupants += 1;
 }
 
 // List of available rooms
@@ -25,7 +42,9 @@ var rooms = [
     subject: 'CSCE 421',
     date: '10/15/19',
     time: '2:00 P.M.',
-    people: '3/5',
+    occupants: 3,
+    capacity: 5,
+    privacy: 'Open',
     join: false
   },
   {
@@ -33,7 +52,9 @@ var rooms = [
     subject: 'CSCE 155E',
     date: '10/15/19',
     time: '2:00 P.M.',
-    people: '2/4',
+    occupants: 2,
+    capacity: 4,
+    privacy: 'Open',
     join: false
   },
   {
@@ -41,7 +62,9 @@ var rooms = [
     subject: 'JGEN 200',
     date: '10/15/19',
     time: '6:15 P.M.',
-    people: '1/7',
+    occupants: 1,
+    capacity: 7,
+    privacy: 'Open',
     join: false
   }
 ];
@@ -49,14 +72,40 @@ var rooms = [
 // List of reservations
 var reservations = [];
 
-const room1 = createRoom(
-  'Love 105',
-  'CHEM 109',
-  '10/15/19',
-  '8:15 P.M.',
-  '3/6'
-);
+const room1 = createRoom('Love 105', 'CHEM 109', '10/15/19', '8:15 P.M.', 3, 6);
 
 joinRoom(room1);
 addRoomToList(room1);
 console.log(rooms);
+
+var columns = [
+  'room',
+  'subject',
+  'date',
+  'time',
+  'occupants',
+  'capacity',
+  'privacy',
+  'join'
+];
+
+// TODO: Add the "remove" button for the reservations
+window.addEventListener('DOMContentLoaded', event => {
+  // Finds the table in the HTML after the DOM is loaded
+  var table = document.querySelector('#reservation-table');
+
+  // Filters the rooms to only get the rooms joined
+  reservations = rooms.filter(room => {
+    return room.join == true;
+  });
+
+  // Loops through the reservations and displays them
+  for (var i = 0; i < reservations.length; i++) {
+    var row = table.insertRow(-1);
+    for (var j = 0; j < columns.length - 1; j++) {
+      var cell = row.insertCell(-1); // -1 is insert as last
+      cell.className = columns[j].toString(); //
+      cell.innerHTML = reservations[i][columns[j]];
+    }
+  }
+});

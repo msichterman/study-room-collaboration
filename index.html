@@ -15,35 +15,45 @@
     <script type="text/javascript" src="main.js"></script>
   </head>
   <body>
-    <table class="table table-striped">
+    <div class="container mt-3">
+      <div class="row justify-content-around">
+        <button
+          type="button"
+          class="btn btn-secondary btn-lg"
+          onclick="window.location.href='search.html'"
+        >
+          Search for Public Rooms
+        </button>
+        <button
+          type="button"
+          class="btn btn-info btn-lg"
+          onclick="window.location.href='create.html'"
+        >
+          Create a Study Room
+        </button>
+      </div>
+    </div>
+    <hr />
+    <h1 class="text-secondary ml-5">Your Reservations</h1>
+    <p class="ml-5">
+      Welcome to your study room reservation dashboard! View your reservations
+      below, or choose an option above to join a room or create a new room!
+    </p>
+    <hr />
+
+    <table id="reservation-table" class="table table-striped text-center">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Room</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+          <th scope="col">Occupants</th>
+          <th scope="col">Capacity</th>
+          <th scope="col">Privacy</th>
+          <th scope="col">Leave?</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
     </table>
   </body>
 </html>

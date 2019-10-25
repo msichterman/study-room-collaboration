@@ -81,7 +81,7 @@ var rooms = [
 var reservations = [];
 
 // How it would look to create a room...
-const room1 = createRoom('Love 105', 'CHEM 109', '10/15/19', '8:15 P.M.', 3, 6);
+createRoom('Love 105', 'CHEM 109', '10/15/19', '8:15 P.M.', 3, 6);
 // console.log(rooms);
 
 var columns = [

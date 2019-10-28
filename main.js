@@ -29,18 +29,22 @@ function addRoomToList(room) {
   rooms.push(room);
 }
 
-// Join the Room
+// Join a room
 function joinRoom(room) {
   room.join = true;
-  if (room.occupants >= room.capacity - 1) {
+  if (room.occupants >= room.capacity - 1 && room.privacy !== 'Closed') {
     room.privacy = 'Full';
   }
   room.occupants += 1;
 }
 
-// TODO: Change privacy if occupants == capacity, remove 1 from occupants, set join to false
+// Leave a room
 function leaveRoom(room) {
-  //...
+  room.join = false;
+  if (room.occupants === room.capacity && room.privacy == 'Full') {
+    room.privacy = 'Open';
+  }
+  room.occupants -= 1;
 }
 
 // List of available rooms
@@ -77,12 +81,10 @@ var rooms = [
   }
 ];
 
-// List of reservations
-var reservations = [];
-
 // How it would look to create a room...
 createRoom('Love 105', 'CHEM 109', '10/15/19', '8:15 P.M.', 3, 6);
-// console.log(rooms);
+// leaveRoom(rooms[3]);
+console.log(rooms);
 
 var columns = [
   'room',
@@ -95,6 +97,11 @@ var columns = [
   'join'
 ];
 
+// -------------------------------------------------------------------------
+// List of reservations
+// PAGE: index.html
+var reservations = [];
+
 // TODO: Add the "remove" button for the reservations
 window.addEventListener('DOMContentLoaded', event => {
   // Finds the table in the HTML after the DOM is loaded
@@ -102,7 +109,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
   // Filters the rooms to only get the rooms joined
   reservations = rooms.filter(room => {
-    return room.join == true;
+    return room.join === true;
   });
 
   // Loops through the reservations and displays them
@@ -115,3 +122,34 @@ window.addEventListener('DOMContentLoaded', event => {
     }
   }
 });
+// -------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------
+// List of open rooms
+// Page: search.html
+let open_rooms = [];
+
+window.addEventListener('DOMContentLoaded', event => {
+  // Finds the table in the HTML after the DOM is loaded
+  var table = document.querySelector('#search-table');
+
+  // Filters the rooms to only get the rooms joined
+  reservations = rooms.filter(room => {
+    return (
+      room.occupants < room.capacity &&
+      room.privacy === 'Open' &&
+      room.join === false
+    );
+  });
+
+  // Loops through the reservations and displays them
+  for (var i = 0; i < reservations.length; i++) {
+    var row = table.insertRow(-1);
+    for (var j = 0; j < columns.length - 1; j++) {
+      var cell = row.insertCell(-1); // -1 is insert as last
+      cell.className = columns[j].toString(); //
+      cell.innerHTML = reservations[i][columns[j]];
+    }
+  }
+});
+// -------------------------------------------------------------------------

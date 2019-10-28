@@ -1,0 +1,18 @@
+.room-box {
+  width: 150px;
+  height: 120px;
+  border: 1px solid black;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 100%;
+}
+
+div > a {
+  text-decoration: none !important;
+  color: black;
+  font-size: 25px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}

@@ -1,5 +1,5 @@
 # [Study Room Collaboration](https://msichterman.github.io/study-room-collaboration/index.html)
-A study room planning software intended to improve the reservation experience by allowing users to create open study rooms, and join other study rooms with people studying the same subjects.
+A study room planning software protype intended to improve the reservation experience by allowing users to create open study rooms and join other study rooms with people studying the same subjects.
 
 Check out the live app [here](https://msichterman.github.io/study-room-collaboration/index.html)!
 

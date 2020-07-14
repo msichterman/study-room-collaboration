@@ -1,3 +1,6 @@
+[![MSICH - Personal Site](https://img.shields.io/badge/MSICH-Personal%20Site-0892d0)](https://msich.netlify.app/)&emsp;
+[![Twitter Follow](https://img.shields.io/twitter/follow/mattsichterman?style=social)](https://twitter.com/mattsichterman)&emsp;
+[![Follow on GitHub](https://img.shields.io/github/followers/msichterman?label=Follow%20on%20Github&style=social)](https://github.com/msichterman)&emsp;
 # [Study Room Collaboration](https://msichterman.github.io/study-room-collaboration/index.html)
 A study room planning software protype intended to improve the reservation experience by allowing users to create open study rooms and join other study rooms with people studying the same subjects.
 
